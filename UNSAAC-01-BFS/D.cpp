@@ -3,13 +3,13 @@
 using namespace std;
 const int N = 1e5+5;
 bool vis[N];
-vector<int> adj[N];
+vector<int> grafo[N];
 vector<int> v(N);
 int n,m;
 
 void dfs(int u, int count) {
     vis[u] = true; 
-    for (auto it: adj[u]) {
+    for (auto it: grafo[u]) {
         int cc = count; 
         if( !vis[it]) {
             if(v[u] == 1 && v[it] == 1) cc++;
@@ -29,15 +29,15 @@ void HelperStartTheEngine(){
     for(int i = 1; i < n; i++) {
         int a, b;
         cin>> a >> b;
-        adj[a].push_back(b);
-        adj[b].push_back(a);
+        grafo[a].push_back(b);
+        grafo[b].push_back(a);
     }
     int cnt = 0;
     if (v[1] == 1) cnt++;
     dfs(1, cnt);
     long long ans = 0;
     for (int i = 2; i <= n; i++) {
-        if(vis[i]== 1 && adj[i].size() == 1) ans++;
+        if(vis[i]== 1 && grafo[i].size() == 1) ans++;
     }
     cout << ans << '\n';
 }

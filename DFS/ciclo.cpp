@@ -13,19 +13,19 @@ class Graph
 {
 public:
     // un vector de vectores para representar una lista de adyacencia
-    vector<vector<int>> adjList;
+    vector<vector<int>> grafoList;
  
     // Constructor de graph
     Graph(vector<Edge> const &edges, int n)
     {
         // cambiar el tamaño del vector para contener `n` elementos de tipo `vector<int>`
-        adjList.resize(n);
+        grafoList.resize(n);
  
         // agrega bordes al grafo no dirigido
         for (auto &edge: edges)
         {
-            adjList[edge.src].push_back(edge.dest);
-            adjList[edge.dest].push_back(edge.src);
+            grafoList[edge.src].push_back(edge.dest);
+            grafoList[edge.dest].push_back(edge.src);
         }
     }
 };
@@ -58,7 +58,7 @@ bool BFS(Graph const &graph, int src, int n)
         q.pop();
  
         // hacer para cada borde (v, u)
-        for (int u: graph.adjList[node.v])
+        for (int u: graph.grafoList[node.v])
         {
             if (!discovered[u])
             {

@@ -34,7 +34,7 @@ const ll lmin=-2e18;
 //  ... --- ... 
 // --------------------------------------------------------------
 vll eulertour,start(N+1,-1),endt(N+1,-1),color(N+1);
-vll adj[N+1];
+vll grafo[N+1];
 void dfs(ll node,ll parent,ll &time)
 {
     if(start[node]==-1)
@@ -43,7 +43,7 @@ void dfs(ll node,ll parent,ll &time)
         eulertour[time]=node;
         time++;
     }
-    for(auto it: adj[node])
+    for(auto it: grafo[node])
     {
         if(it!=parent)
         {
@@ -98,7 +98,7 @@ public:
         if(low==high && low>=vec.size())
         {
             tree[curr]=neutral_element;
-            return;
+            return;            
         }
         if(low==high)
         {
@@ -162,8 +162,8 @@ void solve()
     {
         ll x,y;
         cin>>x>>y;
-        adj[x].pb(y);
-        adj[y].pb(x);
+        grafo[x].pb(y);
+        grafo[y].pb(x);
     }
     ll time=1;
     // store the euler tour with start and end times
